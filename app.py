@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request
 import random
 from nltk.corpus import wordnet
-# import nltk
-# nltk.download('wordnet')
+import nltk
+nltk.download('wordnet')
 app = Flask(__name__)
 
 def get_synonyms(word):
