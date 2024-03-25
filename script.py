@@ -7,13 +7,21 @@ app = Flask(__name__)
 def get_student_number():
     return jsonify({"student_number": "200537749"})
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
-    data = request.json
-    # Process the request data from Dialogflow
-    # Here, you can add your logic to handle Dialogflow requests and generate a response
-    response_text = "This is the response from the webhook endpoint."
-    return jsonify({"fulfillmentText": response_text})
+    req = request.get_json(silent=True, force=True)
+    fulfillmentText = 'xxx'
+    query_result = req.get('queryResult')
+    if query_result.get('action') == 'get.address':
+        ### Perform set of executable code
+        ### if required
+        ### ...
+
+        fulfillmentText = "Hi .. i am in"
+    return {
+            "fulfillmentText": fulfillmentText,
+            "source": "webhookdata"
+        }
 
 if __name__ == '__main__':
     app.run(debug=True)
