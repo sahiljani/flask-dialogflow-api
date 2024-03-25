@@ -12,7 +12,7 @@ def webhook():
     req = request.get_json(silent=True, force=True)
     fulfillmentText = 'xxx'
     query_result = req.get('queryResult')
-    if query_result.get('action') == 'get.address':
+    if query_result.get('action') == 'input.workout':
         ### Perform set of executable code
         ### if required
         ### ...
